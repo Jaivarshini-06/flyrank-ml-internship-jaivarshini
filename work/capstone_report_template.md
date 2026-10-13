@@ -12,8 +12,7 @@
 
 ## 0. Abstract
 
-Five sentences, written last, placed first: question → data → method → headline result →
-what the output is for. This is the top of your deployed paper.
+This project investigates whether historical search-performance metrics can help identify content items at risk of a future decline in impressions. It uses the FlyRank ML Internship warehouse dataset, analysing monthly content-level performance records from March through June 2026. A logistic regression model uses average daily impressions, average daily clicks, average search position, and reporting-data availability to estimate the likelihood of an impressions decline of at least 20% in the following month. On the May-to-June 2026 test period, the model achieved an F1-score of 0.6910 and a ROC-AUC of 0.6004, compared with an F1-score of 0.4986 for a low-impressions baseline. The resulting probability scores rank content records for human review, supporting investigation and prioritization rather than automatic refresh decisions or causal conclusions.
 
 ## 1. Problem framing
 
@@ -85,17 +84,17 @@ The analysis is predictive, not causal. It does not show that refreshing content
 
 ## 8. Reproducibility
 
-The exact commands to re-run everything from a fresh clone, your random seeds, and your
-environment (`pip freeze` highlights or `requirements.txt` deltas). If you claim a sealed or
-holdout evaluation, two things must be committed: the cell/script that builds the sealed
-frame, and the metrics file it produced — "evaluated once, blind" should be checkable from
-your repo, not taken on faith.
+The project dependencies are listed in the repository's `requirements.txt` file. The analysis was developed in a Python notebook using pandas, NumPy, scikit-learn, Matplotlib, DuckDB, and Hugging Face Hub. Report-generation support is provided by ReportLab.
+
+The logistic regression model uses `random_state=42`, and the model is configured with `max_iter=500` and `class_weight="balanced"`. Median imputation and feature standardization are performed in a scikit-learn pipeline. The evaluation uses March and April 2026 records for training and May 2026 records for testing against June 2026 outcomes.
+
+The main analysis notebook is `work/notebooks/capstone.ipynb`. To reproduce the analysis, clone the repository, install the dependencies, and run the notebook from beginning to end in an environment with access to the required dataset. The dataset was accessed through Hugging Face Hub, so appropriate dataset access and authentication may be required.
+
+The reported test metrics should be checked against a fresh notebook run before submission. The repository should also contain the code used to construct the test frame and a saved metrics artifact if the evaluation is presented as a sealed or independently verifiable holdout. The exact Python version, installed package versions, and execution commands should be recorded after verifying them in the working environment.
 
 ## 9. Acknowledgments & data credit
 
-One short section at the bottom of the deployed paper: "Built on the FlyRank ML Internship
-dataset" **linking to https://flyrank.ai**. Crediting your data source is standard research
-practice — and it's on the capstone's required-section list, so a paper without it isn't done.
+This project was completed as part of the FlyRank ML Internship. The analysis uses the FlyRank ML Internship dataset, which is acknowledged here in accordance with the project's data-credit requirements. **Built on the [FlyRank ML Internship dataset](https://flyrank.ai).**
 
 ---
 
