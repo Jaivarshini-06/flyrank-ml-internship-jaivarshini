@@ -1,9 +1,9 @@
 # Capstone Report — <your lane>
 
-- **Author:**
-- **Lane:**
-- **Repo:**
-- **Date:**
+- **Author:** Muthukrishnan Jaivarshini
+- **Lane:** Refresh / Content Opportunity Scoring
+- **Repo:** flyrank-ml-internship-jaivarshini
+- **Date:** October 13, 2026
 
 > Copy this file to `work/capstone_report.md` and fill it in as you build. Sections 1–8
 > mirror the Pass / Needs-Work rubric axes, so nothing here is optional. Sections 0 and 9
@@ -17,9 +17,13 @@ what the output is for. This is the top of your deployed paper.
 
 ## 1. Problem framing
 
-What decision does this support? Name the unit of analysis (page, client, day…), the output
-(score, rank, cluster, report), the action a human takes from it, and the cost of a wrong
-call. Why does data/ML help here at all?
+The goal of this project is to help content editors prioritize which content items should be reviewed for potential search-performance declines.
+
+The unit of analysis is a content-month record. The model uses historical performance metrics to estimate the likelihood of a decline of at least 20% in average daily impressions in the following month. Its output is a ranked review queue, with higher-risk records placed first.
+
+A FlyRank editor can use this queue to investigate performance, check data availability, and decide whether a content update or further analysis is appropriate. A false positive may lead to unnecessary review work, while a false negative may cause a potentially declining item to be overlooked.
+
+Machine learning is useful here because it combines multiple performance signals rather than relying only on a single low-impressions threshold. However, the ranking is a decision-support aid, not an automatic refresh decision, and it does not establish that refreshing content will improve performance.
 
 ## 2. Data safety
 
